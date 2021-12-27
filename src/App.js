@@ -5,6 +5,7 @@ import Home from './pages/Home.js'
 import About from './pages/About.js';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import FoodLocations from './pages/FoodLocations';
 
 function App() {
   return (
