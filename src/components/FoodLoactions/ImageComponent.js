@@ -1,7 +1,5 @@
 import React from 'react'
-import TestImage from "../Images/TestImage.jpeg"
-
-console.log(TestImage)
+import TestImage from '../Images/TestImage.jpeg'
 
 const ImageComponent = () => {
     return (
