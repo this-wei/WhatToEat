@@ -11,3 +11,145 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#what-to-eat {
+  position: absolute;
+  top: 30%;
+  font-size: 100px;
+  font-weight: bold;
+}
+
+#address-bar {
+  position: relative;
+  width: 200%;
+  height: 45px;
+  margin: 5px;
+  padding: 3px 7px;
+  font-size: 20px;
+}
+
+.add-form {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+}
+
+.form-control {
+  float: left;
+}
+
+/*Sets up individual Boxes*/
+.container {
+  max-width: 850px;
+  margin: 15px 30px;
+  overflow: auto;
+  min-height: 150px;
+  border: 1px solid black;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.container:hover {
+  max-width: 853px;
+  min-height: 153px;
+  background-color: whitesmoke;
+  border: 3px solid black;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.btn {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 15px 25px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 12px;
+  font-family: inherit;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+.favourite-icon {
+  position: relative;
+  left: 200px;
+  border: transparent;
+  background-color: transparent;
+  color: red;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 25px;
+  font-family: inherit;
+}
+
+.favourite-icon:active {
+  transform: scale(0.98);
+}
+
+/*Styling the restaurant info*/
+.restaurant-info {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.restaurant-info li {
+  font-size: 15px;
+  float: right;
+  display: block;
+  text-align: center;
+  padding: 7px;
+  border-right: 1px black solid;
+  text-decoration: none;
+}
+
+/*Coinatin all the locations to the left side*/
+.contain-locations {
+  margin: auto;
+  width: 70%;
+  float: left;
+}
+
+.image-position {
+  margin: 0;
+  width: 30%;
+  float: right;
+}
+
+.image-styling {
+  position: absolute;
+  height: 800px;
+  width: 30%;
+}
+
+
