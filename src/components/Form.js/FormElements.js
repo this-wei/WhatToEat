@@ -18,7 +18,7 @@ export const SharedStyles = css`
     height: 40px;
     border-radius: 5px;
     border: 1px solid #ddd;
-    margin: 10px 0 20px 0;
+    margin: 10px 0;
     padding: 20px;
     box-sizing: border-box;
 
@@ -61,11 +61,11 @@ export const MediumStyledInput = styled(StyledInput)`
 `;
 
 export const SmallStyledInput = styled(StyledInput)`
-    width: 14%;
+    width: 15%;
     ${SharedStyles}
 
     @media screen and (max-width: 768px) {
-        width: fit-content;
+        width: 50%;
     }
 `;
 
@@ -80,6 +80,8 @@ export const LocationWrapper = styled.div`
 
     @media screen and (max-width: 768px) {
         flex-direction: column;
+        align-items: center;
+        gap: 0px
     }
 `;
 
@@ -88,10 +90,10 @@ export const SmallChip = styled(Chip)`
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding-bottom: 10px;
 
     @media screen and (max-width: 768px) {
         width: fit-content;
+        padding-bottom: 10px;
     }
 `;
 
@@ -114,22 +116,23 @@ export const FormChips = styled.div`
     @media screen and (max-width: 768px) {
         /* display: none; */
         flex-direction: column;
-        align-content: center;
+        align-items: center;
+        padding-bottom: 10px;
     }
 `;
 
 // There has to be a better way of doing this. Essentially I'm making a 2x2 table, one container for the big and one container for small
-export const SmallFormChips = styled(FormChips)`
-    display: none;
+// export const SmallFormChips = styled(FormChips)`
+//     display: none;
 
-    /* @media screen and (max-width: 768px) {
-        display: flex;
-        justify-content: center;
-        align-items: baseline;
-        max-width: 768px;
-        gap: 10px;
-    } */
-`;
+//     @media screen and (max-width: 768px) {
+//         display: flex;
+//         justify-content: center;
+//         align-items: baseline;
+//         max-width: 768px;
+//         gap: 10px;
+//     }
+// `;
 
 export const StyledButton = styled.button`
     display: block;
