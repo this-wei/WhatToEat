@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLink, ContrastedNavBtnLink, OpenLinksButton, Times, NavbarExtendedContainer, NavLinkExtended } from './NavbarElements';
+import { Nav, NavLink, NavMenu, NavBtn, NavBtnLink, ContrastedNavBtnLink, OpenLinksButton, NavbarExtendedContainer, NavLinkExtended } from './NavbarElements';
 import {FaBars, FaTimes} from 'react-icons/fa'
 // import './Navbar.css'
 

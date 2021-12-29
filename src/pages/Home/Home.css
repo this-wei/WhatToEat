@@ -1,0 +1,6 @@
+.header {
+    position: relative;
+    transform: translate(0, 0);
+    font-size: large;
+    text-align: center;
+}

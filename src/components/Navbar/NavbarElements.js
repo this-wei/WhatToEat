@@ -9,7 +9,7 @@ export const Nav = styled.nav`
     display: flex;
     justify-content: space-between;
     padding: 0.5rem calc((100vw - 1000px) / 2);
-    z-index: 10;
+    z-index: 999;
 `;
 
 export const NavLink = styled(Link)`
@@ -139,6 +139,7 @@ export const NavLinkExtended = styled(Link)`
     align-items: center;
     text-decoration: none;
     padding: 10px;
+    z-index: 10;
     cursor: pointer;
 
     &.active {
