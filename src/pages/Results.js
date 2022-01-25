@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Home = () => {
+const Results = () => {
     return (
         <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '90vh'}}>
-            <h1>What to Eat</h1>
+            <h1>Results</h1>
         </div>
     )
 }
 
-export default Home
+export default Results
