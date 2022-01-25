@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle, css } from 'styled-components'
+import styled, { createGlobalStyle, css } from 'styled-components';
 import { Chip } from '@mui/material';
 
 export const GlobalStyle = createGlobalStyle`
@@ -8,7 +8,8 @@ export const GlobalStyle = createGlobalStyle`
 
     body {
         font-family: 'Ubuntu', sans-serif;
-        background: linear-gradient(to bottom, #e43a15, #e65245);
+        /* background: linear-gradient(to bottom, #e43a15, #e65245); */
+        background: #878583;
         height: 100%;
     }
 `;
@@ -39,6 +40,38 @@ export const StyledFormWrapper = styled.div`
     padding: 0 20px;
 `;
 
+export const DetailsContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;
+`;
+
+export const LocationComboContainer = styled.div`
+    ${SharedStyles}
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 85%;
+`;
+
+export const TextInput = styled.input`
+    flex: 1 0;
+    min-width: 50px;
+    min-height: 25px;
+    background-color: transparent;
+    padding-left: 5px;
+    border: 0;
+    &:focus {
+        outline: none;
+    }
+`;
+
+export const LocationIcon = styled.div`
+    flex: 0 0;
+    cursor: pointer;
+`;
+
 export const StyledForm = styled.form`
     width: 100%;
     max-width: 700px;
@@ -55,11 +88,6 @@ export const StyledInput = styled.input`
     ${SharedStyles}
 `;
 
-export const MediumStyledInput = styled(StyledInput)`
-    width: 85%;
-    ${SharedStyles}
-`;
-
 export const SmallStyledInput = styled(StyledInput)`
     width: 15%;
     ${SharedStyles}
@@ -69,12 +97,10 @@ export const SmallStyledInput = styled(StyledInput)`
     }
 `;
 
-
 export const LocationWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    padding-bottom: 10px;
     gap: 10px;
 
 
@@ -108,7 +134,7 @@ export const MediumChip = styled(SmallChip)`
 
 export const FormChips = styled.div`
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: baseline;
     /* max-width: 768px; */
     width: 100%;
@@ -121,18 +147,12 @@ export const FormChips = styled.div`
     }
 `;
 
-// There has to be a better way of doing this. Essentially I'm making a 2x2 table, one container for the big and one container for small
-// export const SmallFormChips = styled(FormChips)`
-//     display: none;
-
-//     @media screen and (max-width: 768px) {
-//         display: flex;
-//         justify-content: center;
-//         align-items: baseline;
-//         max-width: 768px;
-//         gap: 10px;
-//     }
-// `;
+export const PriceContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 33%;
+`;
 
 export const StyledButton = styled.button`
     display: block;

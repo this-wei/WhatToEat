@@ -1,29 +1,31 @@
 import React, { useState } from 'react'
-import { GlobalStyle, StyledFormWrapper, StyledInput, StyledButton, StyledForm, FormChips, SmallStyledInput, StyledTitle, LocationWrapper, MediumStyledInput, SmallChip, MediumChip } from './FormElements.js'
-
-//NOTES: Implement an advanced search button that expands the rest of the form (new container for the location). New container for the advanced search, look at the extendNavbar in Navbar.js Then a current location button that gets the location of the current user.
+import Axios from "axios";
+import { GlobalStyle, StyledFormWrapper, StyledInput, StyledButton, StyledForm, FormChips, SmallStyledInput, StyledTitle, LocationWrapper, SmallChip, MediumChip, DetailsContainer, LocationComboContainer, TextInput, LocationIcon, PriceContainer } from './FormElements.js'
+import MyLocationIcon from '@mui/icons-material/MyLocation';
+import { formatRequest, getPlacesData } from '../../api/index.js';
 
 const initialState = {
     location: '',
-    typeOfFood: '',
-    distance: '',
+    keyword: '',
+    radius: '',
     rating: '',
+    maxPriceLevel: '',
     openNow: false,
     neverBeen: false
 }
 
-const Form = () => {
-
+const Form = (props) => {
     const [openNow, setOpenNow] = useState(false);
     const [neverBeen, setNeverBeen] = useState(false);
     const [advancedSearch, setAdvancedSearch] = useState(false);
     const [state, setState] = useState(initialState);
+    const [location, setLocation] = useState('');
 
-    // Gonna have to change this later to send this info to the API
     const handleSubmit = e => {
         e.preventDefault();
-        console.log("submitted");
-        console.log(state);
+        const request = formatRequest(state);
+        console.log(request);
+        getResults(request)
     }
 
     const handleInput = e => {
@@ -33,51 +35,94 @@ const Form = () => {
         setState(prev => ({...prev, [inputName]: value}))
     }
 
+    function getUserLocation() {
+        navigator.geolocation.getCurrentPosition(
+            position => {
+                state.lat = position.coords.latitude;
+                state.long = position.coords.longitude;
+                setState(prev => ({...prev, location: `${state.lat},${state.long}`}))
+            },
+            error => {
+                console.log("Error getting location");
+            }
+        )
+    }
+
+    const getResults = (request) => {
+        Axios.get(`/json?${request}&type=restaurant&key=AIzaSyB_uM3QLt027rycHvILOkW1musfw4m3A1M`).then(
+            (response) => {
+                props.setResults(response.data.results);
+                props.setSubmitted( true );
+            })
+    }
+
     return (
         <>
             <GlobalStyle />
             <StyledFormWrapper>
                 <StyledForm onSubmit={handleSubmit}>
-                    <StyledTitle>{advancedSearch ? "Enter as many or as little details as you like!" : "Please enter a location"}</StyledTitle> 
+                    <StyledTitle>{advancedSearch ? "Enter as many or as little details as you like!" : "Please enter a location and a radius"}</StyledTitle> 
                     
                     <LocationWrapper>
                     {/* <label htmlFor='location'>Location</label> */}
-                        <MediumStyledInput 
-                        type="text" 
+                        <LocationComboContainer>
+                        <TextInput
+                        type="text"
                         name="location" 
                         placeholder='Toronto, ON' 
-                        required value={state.location} 
+                        required
+                        value={state.location} 
                         onChange={handleInput}
                         />
-                        <SmallChip 
+
+                        <LocationIcon>
+                            <MyLocationIcon onClick={getUserLocation} />
+                        </LocationIcon>
+                        </LocationComboContainer>
+
+                        <SmallStyledInput 
+                        type="number" 
+                        name="radius" 
+                        placeholder='15 km' 
+                        min='1'
+                        max='50'
+                        required
+                        value={state.radius} 
+                        onChange={handleInput} />
+                    </LocationWrapper> 
+
+                    <DetailsContainer>
+                    <SmallChip 
                         label="Add Details" 
                         color={advancedSearch ? "primary" : "default"} 
                         onClick={() => setAdvancedSearch((curr) => (!curr))} />
-                    </LocationWrapper> 
+                    </DetailsContainer>
 
                     {advancedSearch && (
                         <>
-                        <label htmlFor='typeOfFood'>Type of Food</label>
+                        <label htmlFor='keyword'>Type of Food</label>
                         <StyledInput 
                         type="text" 
-                        name="typeOfFood" 
+                        name="keyword" 
                         placeholder='Sushi, Pizza, Italian, etc.' 
-                        value={state.typeOfFood} 
+                        value={state.keyword} 
                         onChange={handleInput} 
                         />
                         
                         <FormChips openNow={openNow} neverBeen={neverBeen}>
 
-                            <label htmlFor='distance'>Distance</label>
+                            <label htmlFor='maxPriceLevel'>Max Cost</label>
                             <SmallStyledInput 
                             type="number" 
-                            name="distance" 
-                            placeholder='15 km' 
-                            min='1'
-                            value={state.distance} 
+                            name="maxPriceLevel" 
+                            placeholder='1-4' 
+                            min='0'
+                            max='4'
+                            value={state.maxPriceLevel} 
                             onChange={handleInput} 
                             />
-
+                            
+                            {/* Places API doesn't support rating */}
                             <label htmlFor='rating'>Rating</label>
                             <SmallStyledInput 
                             type="number" 
@@ -108,26 +153,6 @@ const Form = () => {
                         </>
                     )
                     }
-
-                    {/* <SmallFormChips>
-
-                        <label htmlFor='distance'>Distance</label>
-                        <SmallStyledInput type="number" name="distance" placeholder='15 km' />
-
-                        <label htmlFor='rating'>Rating</label>
-                        <SmallStyledInput type="number" name="rating" placeholder='4' min='1' max='5'/>
-
-                    </SmallFormChips>
-                        
-                    <SmallFormChips>
-
-                        <Chip label="Open now" color={openNow ? "success" : "default"}
-                        onClick={() => setOpenNow((curr) => (!curr))}
-                        /> 
-                        <Chip label="Never been" color={neverBeen ? "success" : "default"} onClick={() => setNeverBeen((curr) => (!curr))} />
-
-                    </SmallFormChips> */}
-
                     <StyledButton type="submit">Let's Eat!</StyledButton>
                 </StyledForm>
             </StyledFormWrapper>

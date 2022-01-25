@@ -125,6 +125,7 @@ export const NavbarExtendedContainer = styled.div`
         background: #000;
         flex-direction: column;
         align-items: center;
+        z-index: 999;
         margin-top: 80px;
 
     @media (min-width: 768px) {
@@ -139,7 +140,6 @@ export const NavLinkExtended = styled(Link)`
     align-items: center;
     text-decoration: none;
     padding: 10px;
-    z-index: 10;
     cursor: pointer;
 
     &.active {

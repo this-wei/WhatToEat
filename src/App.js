@@ -5,21 +5,24 @@ import Home from './pages/Home/Home.js'
 import About from './pages/About.js';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import Results from './pages/Results';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
+    <>
     <Router>
-       <Navbar />
-       <Routes>
-         <Route path="home" element={<Home />}></Route>
-         <Route path="about" element={<About />}></Route>
-         <Route path="login" element={<Login />}></Route>
-         <Route path="signup" element={<Signup />}></Route>
-       </Routes>
-     </Router>
-    </div>
-  );
+    <Navbar />
+      <Routes>
+          <Route path="/home" element={<Home />}></Route>
+          <Route path="about" element={<About />}></Route>
+          <Route path="login" element={<Login />}></Route>
+          <Route path="signup" element={<Signup />}></Route>
+          <Route path="results" element={<Results />}></Route>
+          </Routes>
+    </Router>
+    </>
+  )
 }
+
 
 export default App;
